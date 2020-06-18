@@ -12,14 +12,33 @@ namespace IMC
 
             string situacao;
 
+            string pesoEmKgDigitado;
+            string alturaEmMDigitado;
+
             Console.WriteLine("-- Calculadora de IMC --");
             Console.WriteLine();
 
             Console.Write("Digite seu peso em kg...: ");
-            pesoEmKg = Convert.ToDecimal(Console.ReadLine());
+            pesoEmKgDigitado = Console.ReadLine();
+
+            if (!Decimal.TryParse(pesoEmKgDigitado, out pesoEmKg)){
+               ConsoleColor cor = Console.ForegroundColor;
+               Console.ForegroundColor = ConsoleColor.Red;
+               Console.WriteLine($"O peso digitado \"{pesoEmKgDigitado}\" não é um número válido.");
+               Console.ForegroundColor = cor;
+               Environment.Exit(1);
+            }
 
             Console.Write("Digite sua altura em m..: ");
-            alturaEmM = Convert.ToDecimal(Console.ReadLine());
+            alturaEmMDigitado = Console.ReadLine();
+
+            if (!Decimal.TryParse(alturaEmMDigitado, out alturaEmM)){
+               ConsoleColor cor = Console.ForegroundColor;
+               Console.ForegroundColor = ConsoleColor.Red;
+               Console.WriteLine($"A altura digitada \"{alturaEmMDigitado}\" não é um número válido.");
+               Console.ForegroundColor = cor;
+               Environment.Exit(1);
+            }            
 
             imc = pesoEmKg / (alturaEmM * alturaEmM) ;
 
